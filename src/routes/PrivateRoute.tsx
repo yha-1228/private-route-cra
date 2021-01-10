@@ -7,9 +7,16 @@ export function PrivateRoute({ children, ...rest }: RouteProps & { children: Rea
   return (
     <Route
       {...rest}
-      render={({ location }) =>
-        auth.user ? children : <Redirect to={{ pathname: '/login', state: { from: location } }} />
-      }
+      render={({ location }) => {
+        // レンダーするもの:
+        // ユーザーありならprops.chidrenを出力
+        // ユーザーなしなら
+        return auth.user ? (
+          children
+        ) : (
+          <Redirect to={{ pathname: '/login', state: { from: location } }} />
+        );
+      }}
     />
   );
 }
