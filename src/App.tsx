@@ -163,7 +163,7 @@ function LoginPage() {
 
   return (
     <div>
-      <p>{from.pathname}のページを見るにはログインしてください。</p>
+      <p>{from.pathname} のページを見るにはログインしてください。</p>
       <button onClick={login}>ログイン</button>
     </div>
   );
