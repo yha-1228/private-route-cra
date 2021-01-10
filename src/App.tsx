@@ -106,8 +106,8 @@ function useProvideAuth() {
 }
 
 function AuthButton() {
-  let history = useHistory();
-  let auth = useAuth();
+  const history = useHistory();
+  const auth = useAuth();
 
   return auth.user ? (
     <p>
@@ -129,7 +129,7 @@ function AuthButton() {
 // A wrapper for <Route> that redirects to the login
 // screen if you're not yet authenticated.
 function PrivateRoute({ children, ...rest }: RouteProps & { children: React.ReactNode }) {
-  let auth = useAuth();
+  const auth = useAuth();
   return (
     <Route
       {...rest}
@@ -149,12 +149,12 @@ function ProtectedPage() {
 }
 
 function LoginPage() {
-  let history = useHistory();
-  let location = useLocation();
-  let auth = useAuth();
+  const history = useHistory();
+  const location = useLocation();
+  const auth = useAuth();
 
-  let { from } = (location.state as { from: any }) || { from: { pathname: '/' } };
-  let login = () => {
+  const { from } = (location.state as { from: any }) || { from: { pathname: '/' } };
+  const login = () => {
     if (!auth.signin) return;
     auth.signin(() => {
       history.replace(from);
