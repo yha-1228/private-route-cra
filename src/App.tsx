@@ -12,21 +12,6 @@ import {
   RouteProps,
 } from 'react-router-dom';
 
-// This example has 3 pages: a public page, a protected
-// page, and a login screen. In order to see the protected
-// page, you must first login. Pretty standard stuff.
-//
-// First, visit the public page. Then, visit the protected
-// page. You're not yet logged in, so you are redirected
-// to the login page. After you login, you are redirected
-// back to the protected page.
-//
-// Notice the URL change each time. If you click the back
-// button at this point, would you expect to go back to the
-// login page? No! You're already logged in. Try it out,
-// and you'll see you go back to the page you visited
-// just *before* logging in, the public page.
-
 export default function App() {
   return (
     <ProvideAuth>
@@ -36,10 +21,10 @@ export default function App() {
 
           <ul>
             <li>
-              <Link to="/public">Public Page</Link>
+              <Link to="/public">パブリックページ</Link>
             </li>
             <li>
-              <Link to="/protected">Protected Page</Link>
+              <Link to="/protected">会員専用ページ</Link>
             </li>
           </ul>
 
@@ -126,18 +111,18 @@ function AuthButton() {
 
   return auth.user ? (
     <p>
-      Welcome!{' '}
+      ようこそ!{' '}
       <button
         onClick={() => {
           if (!auth.signout) return;
           auth.signout(() => history.push('/'));
         }}
       >
-        Sign out
+        ログアウト
       </button>
     </p>
   ) : (
-    <p>You are not logged in.</p>
+    <p>ログインしていません。</p>
   );
 }
 
@@ -156,11 +141,11 @@ function PrivateRoute({ children, ...rest }: RouteProps & { children: React.Reac
 }
 
 function PublicPage() {
-  return <h3>Public</h3>;
+  return <h3>パブリック</h3>;
 }
 
 function ProtectedPage() {
-  return <h3>Protected</h3>;
+  return <h3>会員専用</h3>;
 }
 
 function LoginPage() {
@@ -178,8 +163,8 @@ function LoginPage() {
 
   return (
     <div>
-      <p>You must log in to view the page at {from.pathname}</p>
-      <button onClick={login}>Log in</button>
+      <p>{from.pathname}のページを見るにはログインしてください。</p>
+      <button onClick={login}>ログイン</button>
     </div>
   );
 }
