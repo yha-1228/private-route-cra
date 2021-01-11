@@ -23,6 +23,7 @@ export function LoginPage() {
   const login = () => {
     if (!auth.signin) return;
     auth.signin(() => {
+      // fromキーのパスに遷移
       history.replace(from);
     });
   };
