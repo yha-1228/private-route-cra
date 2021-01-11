@@ -2,6 +2,12 @@ import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
+const routes = [
+  { to: '/', exact: true, title: 'ホーム' },
+  { to: '/public', exact: false, title: 'パブリック' },
+  { to: '/protected', exact: false, title: '会員専用' },
+];
+
 export function Navgation() {
   const history = useHistory();
   const auth = useAuth();
@@ -29,31 +35,13 @@ export function Navgation() {
       <div style={{ display: 'flex' }}>
         <nav>
           <ul>
-            <li style={{ display: 'inline-block', paddingRight: 8 }}>
-              <NavLink activeStyle={{ fontWeight: 'bold' }} to="/" exact>
-                ホーム
-              </NavLink>
-            </li>
-            <li style={{ display: 'inline-block', paddingRight: 8 }}>
-              <NavLink activeStyle={{ fontWeight: 'bold' }} to="/public">
-                パブリック
-              </NavLink>
-            </li>
-            <li style={{ display: 'inline-block', paddingRight: 8 }}>
-              <NavLink activeStyle={{ fontWeight: 'bold' }} to="/public2">
-                パブリック2
-              </NavLink>
-            </li>
-            <li style={{ display: 'inline-block', paddingRight: 8 }}>
-              <NavLink activeStyle={{ fontWeight: 'bold' }} to="/protected">
-                会員専用
-              </NavLink>
-            </li>
-            <li style={{ display: 'inline-block', paddingRight: 8 }}>
-              <NavLink activeStyle={{ fontWeight: 'bold' }} to="/protected2">
-                会員専用2
-              </NavLink>
-            </li>
+            {routes.map((route, i) => (
+              <li key={i} style={{ display: 'inline-block', paddingRight: 8 }}>
+                <NavLink activeStyle={{ fontWeight: 'bold' }} to={route.to} exact={route.exact}>
+                  {route.title}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </nav>
 
