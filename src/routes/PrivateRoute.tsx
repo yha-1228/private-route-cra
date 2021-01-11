@@ -7,16 +7,20 @@ export function PrivateRoute({ children, ...rest }: RouteProps & { children: Rea
   return (
     <Route
       {...rest}
-      render={({ location }) => {
-        // レンダーするもの:
-        // ユーザーありならprops.chidrenを出力
-        // ユーザーなしなら
-        return auth.user ? (
-          children
-        ) : (
-          <Redirect to={{ pathname: '/login', state: { from: location } }} />
-        );
-      }}
+      // 引数のlocationはリダイレクト前にアクセスしたページのパス
+
+      // レンダーするもの:
+      // ユーザーありならprops.chidrenを出力
+      // ユーザーなしならログインページにリダイレクト
+
+      // to propsのstate keyは
+      // リダイレクト先で以下のように取り出せる
+      // -----------------------
+      // const location = useLocation();
+      // => location.state
+      render={({ location }) =>
+        auth.user ? children : <Redirect to={{ pathname: '/login', state: { from: location } }} />
+      }
     />
   );
 }
