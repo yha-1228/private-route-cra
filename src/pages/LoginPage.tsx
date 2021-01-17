@@ -35,8 +35,12 @@ export function LoginPage() {
         <button onClick={login}>ログイン</button>
       </div>
 
+      <hr />
+
       {/* デバッグ用 */}
-      <div style={{ border: '1px solid black' }}>{JSON.stringify(location)}</div>
+      <div style={{ border: '1px solid orange', padding: 16 }}>
+        location = {JSON.stringify(location)}
+      </div>
     </Layout>
   );
 }
